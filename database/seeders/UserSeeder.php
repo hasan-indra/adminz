@@ -23,12 +23,13 @@ class UserSeeder extends Seeder
                 'email' => 'superadmin@mail.com',
                 'password' => Hash::make('superadmin'),
                 'is_active' => true,
+                'is_superadmin' => true,
             ]);
         }
     }
 
     private function checkSuperadminExist($user): bool
     {
-        return $user->where(['is_superadmin' => true,'username' => 'superadmin'])->count() > 0;
+        return $user->where(['is_superadmin' => true, 'username' => 'superadmin', 'is_active' => true])->count() > 0;
     }
 }
