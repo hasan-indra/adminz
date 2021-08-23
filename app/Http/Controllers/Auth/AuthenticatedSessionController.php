@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('login')->with('info', 'Your <b>credential</b> is not active.');
         }
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended(env('APP_PREFIX').RouteServiceProvider::HOME);
     }
 
     /**
