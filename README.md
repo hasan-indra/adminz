@@ -6,7 +6,7 @@ AdminZ adalah sebuah dashboard admin yang di buat dengan framework laravel. Admi
 ## Installation
 * clone repository
 ```bash
-git@gitlab.com:indra-starter/adminz.git
+https://github.com/programercopas/adminz.git
 ```
 * setting database .env file
 ```bash
