@@ -2,12 +2,14 @@
 
 ## About
 
-AdminZ adalah sebuah dashboard admin yang di buat dengan framework laravel. 
+AdminZ adalah sebuah dashboard admin yang di buat dengan framework laravel versi 8. 
 Admin ini digunakan sebagai starter project web admin. 
 Untuk development tiap menunya admin ini menggunakan package Livewire.
 Untuk HTML admin ini menngunakan AdminLTE 3 / Boostrap 4.
 
 ## Installation
+* Gunakan php versi 7.4 ke atas 
+* Gunakan node versi 14 ke atas
 * clone repository
 ```bash
 https://github.com/programercopas/adminz.git
@@ -33,4 +35,14 @@ npm install
 ```bash
 php artisan migrate
 ```
-
+* run database seed untuk generate superadmin user
+```bash
+php artisan db:seed --class=UserSeeder
+```
+* publish adminLTE source
+```bash
+npm run dev
+```
+## Superadmin Users
+* username : superadmin
+* passwrod : superadmin
