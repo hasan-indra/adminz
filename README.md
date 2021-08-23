@@ -2,7 +2,11 @@
 
 ## About
 
-AdminZ adalah sebuah dashboard admin yang di buat dengan framework laravel. Admin ini digunakan sebagai starter project web admin.
+AdminZ adalah sebuah dashboard admin yang di buat dengan framework laravel. 
+Admin ini digunakan sebagai starter project web admin. 
+Untuk development tiap menunya admin ini menggunakan package Livewire.
+Untuk HTML admin ini menngunakan AdminLTE 3 / Boostrap 4.
+
 ## Installation
 * clone repository
 ```bash
