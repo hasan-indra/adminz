@@ -20,6 +20,8 @@ class Activity
 
     public static function eventLogs($logs): void
     {
-        event(new AdminLogActivityEvent($logs));
+        if (config('admin.logs')) {
+            event(new AdminLogActivityEvent($logs));
+        }
     }
 }
