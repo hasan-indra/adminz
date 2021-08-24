@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Events\AdminLogActivityEvent;
 use Livewire\WithPagination;
 
 trait Listing
@@ -69,8 +70,21 @@ trait Listing
 
     }
 
+    private function addListingLogs(): void
+    {
+        if ($this->namePage !== 'dashboard') {
+            $logs = [
+                'user_id' => auth()->user()->id,
+                'activity' => 'listing',
+                'description' => 'view listing ' . $this->namePage,
+            ];
+            event(new AdminLogActivityEvent($logs));
+        }
+    }
+
     public function render()
     {
+        $this->addListingLogs();
         return view($this->listingView())->with('data', $this->queryData());
     }
 

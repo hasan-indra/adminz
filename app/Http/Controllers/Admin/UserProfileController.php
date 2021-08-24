@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\Activity;
 use Illuminate\Http\Request;
 use App\Services\Admin;
 class UserProfileController extends Controller
@@ -23,6 +24,12 @@ class UserProfileController extends Controller
 
         $users = Admin::injectModel('User');
         $users->where(['id' => $userId])->update($profile);
+
+        Activity::eventLogs([
+            'user_id' => auth()->user()->id,
+            'activity' => 'update-profile',
+            'description' => 'Update data profile',
+        ]);
 
         return redirect()->route('profile')->with('success','Profile has been update');
 

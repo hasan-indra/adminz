@@ -28,5 +28,6 @@ trait Create
         $this->emit('hide-modal');
         $this->emit('toast', 'success', 'Data Created Successfully.');
         $this->afterCreate();
+        $this->addFormLogs('create');
     }
 }

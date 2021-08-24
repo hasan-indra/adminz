@@ -22,6 +22,7 @@ trait Delete
             $this->model->where('id', $id)->delete();
             $this->emit('toast', 'error', 'Data has been deleted.');
             $this->afterDelete($deletedData);
+            $this->addFormLogs('delete');
         }
 
     }

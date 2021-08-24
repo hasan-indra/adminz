@@ -8,5 +8,6 @@ trait Activate
         $this->model->where(['id' => $id])->update(['is_active' => $valueDeactive]);
         $message = $isActive ? 'Activated Success' : 'Deactivated Success';
         $this->emit('toast', 'success', $message);
+        $this->addFormLogs('activate');
     }
 }
