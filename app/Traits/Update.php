@@ -42,5 +42,6 @@ trait Update
         $this->emit('hide-modal');
         $this->emit('toast', 'success', 'Data is Updated.');
         $this->afterUpdate();
+        $this->addFormLogs('update');
     }
 }

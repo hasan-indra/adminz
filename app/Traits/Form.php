@@ -2,9 +2,12 @@
 
 namespace App\Traits;
 
+use App\Events\AdminLogActivityEvent;
+
 trait Form
 {
     use Create, Update, Delete, Activate;
+
     private $data;
 
     public function resetForm(): void
@@ -39,5 +42,23 @@ trait Form
     public function afterForm(): void
     {
 
+    }
+
+    private function addFormLogs($event): void
+    {
+        $description = $event;
+        if (isset($this->data)) {
+            foreach ($this->data as $data => $value) {
+                $description = $description . $data . ' - ' . $value;
+            }
+
+        }
+
+        $logs = [
+            'user_id' => auth()->user()->id,
+            'activity' => $event,
+            'description' => $event . ' data ' . $this->namePage . ', ' . $description,
+        ];
+        event(new AdminLogActivityEvent($logs));
     }
 }
