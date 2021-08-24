@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use App\Services\Admin;
+use App\Events\AdminLogActivityEvent;
+
 class Activity
 {
     private $logActivity;
@@ -15,5 +16,10 @@ class Activity
     public function insertLogs($logs): void
     {
         $this->logActivity->create($logs);
+    }
+
+    public static function eventLogs($logs): void
+    {
+        event(new AdminLogActivityEvent($logs));
     }
 }

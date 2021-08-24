@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Services\Admin;
+use App\Services\Activity;
 use App\Traits\Form;
 use App\Traits\Listing;
 use Livewire\Component;
@@ -88,6 +89,11 @@ class Role extends Component
         $this->resetFormPermission();
         $this->emit('hide-modal');
         $this->emit('toast', 'success', 'Save permission success.');
+        Activity::eventLogs([
+            'user_id' => auth()->user()->id,
+            'activity' => 'permission',
+            'description' => 'save permission '.$this->namePage,
+        ]);
 
     }
 
@@ -101,6 +107,7 @@ class Role extends Component
         $this->permission->where('role_id', $id)->delete();
 
     }
+
     // end process permission
 
     public function formData(): array

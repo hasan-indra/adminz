@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Events\AdminLogActivityEvent;
+use App\Services\Activity;
 
 trait Form
 {
@@ -49,7 +49,7 @@ trait Form
         $description = $event;
         if (isset($this->data)) {
             foreach ($this->data as $data => $value) {
-                $description = $description . $data . ' - ' . $value;
+                $description = $description .', '.$data . ' - ' . $value;
             }
 
         }
@@ -59,6 +59,6 @@ trait Form
             'activity' => $event,
             'description' => $event . ' data ' . $this->namePage . ', ' . $description,
         ];
-        event(new AdminLogActivityEvent($logs));
+        Activity::eventLogs($logs);
     }
 }
