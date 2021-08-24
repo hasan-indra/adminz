@@ -59,6 +59,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
+        Activity::eventLogs([
+            'user_id' => auth()->user()->id,
+            'activity' => 'logout',
+            'description' => 'logout from application',
+        ]);
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
