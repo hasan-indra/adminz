@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel'). " - Error Page" }}</title>
+    <title>@yield('title')</title>
 
     <link rel="shortcut icon" href="{{ asset('adminlte-favicon.png') }}">
     <link rel="stylesheet"
@@ -20,7 +20,7 @@
         <x-admin-navbar/>
         <x-admin-sidebar/>
     @endauth
-        <section class="content">
+        <section class="content" style="position: fixed; top: 30%; left: 30%;">
             <div class="error-page">
                 <h2 class="headline text-@yield('type')"> @yield('code')</h2>
 
@@ -33,7 +33,7 @@
                     @endauth
                     @guest()
                         <p>
-                            Meanwhile, you may return to <a href="{{ route('/') }}">homepage</a>.
+                            Meanwhile, you may return to <a href="/">homepage</a>.
                         </p>
                     @endguest
 
@@ -51,6 +51,5 @@
 <script src="{{ asset(env('APP_PATH_ADMINLTE')) }}/plugins/jquery/jquery.min.js"></script>
 <script src="{{ asset(env('APP_PATH_ADMINLTE')) }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset(env('APP_PATH_ADMINLTE')) }}/dist/js/adminlte.min.js"></script>
-@stack('scripts')
 </body>
 </html>
